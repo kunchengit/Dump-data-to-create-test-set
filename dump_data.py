@@ -1,0 +1,18 @@
+BUGZILLA_DATABASE_HOST = "bz3-db3.eng.vmware.com"
+BUGZILLA_DATABASE_PORT = 3306
+BUGZILLA_DATABASE_USER ="mts"
+BUGZILLA_DATABASE_PW="mts"
+BUGZILLA_DATABASE_DATABASE="bugzilla"
+bzdb_conn = MySQLdb.connect(host=BUGZILLA_DATABASE_HOST, port=BUGZILLA_DATABASE_PORT, user=BUGZ     ILLA_DATABASE_USER, passwd=BUGZILLA_DATABASE_PW, db=BUGZILLA_DATABASE_DATABASE)
+
+LOCAL_DATABASE_HOST = "10.117.8.41"
+LOCAL_DATABASE_PORT = 3306
+LOCAL_DATABASE_USER = "root"
+LOCAL_DATABASE_PW = "vmware"
+LOCAL_DATABASE_DATABASE = "test"
+local_conn = MySQLdb.connect(host=LOCAL_DATABASE_HOST, port=LOCAL_DATABASE_PORT, user=LOCAL_DA     TABASE_USER, passwd=LOCAL_DATABASE_PW, db=LOCAL_DATABASE_DATABASE)
+
+bzdb_cursor = bzdb_conn.cursor()
+sql = """
+      select bug_id from bugs where assigned_to in (
+      select 
